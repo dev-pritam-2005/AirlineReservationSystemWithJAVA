@@ -1,96 +1,182 @@
-✈️ Airline Reservation System (Java)
+# ✈️ Airline Reservation System — Java
 
-A console-based Airline Reservation System developed using Java and Object-Oriented Programming (OOP) principles.
-This project simulates the working of an airline booking platform where users can search flights, book tickets, and manage reservations.
+A **Java-based desktop Airline Reservation System** built with a graphical user interface (GUI) using **Java Swing**, backed by a **MySQL database** via JDBC. This project demonstrates real-world application of Object-Oriented Programming (OOP) principles in a practical, multi-module system.
 
-It is designed as an academic project for learning Java OOP concepts such as encapsulation, inheritance, abstraction, and polymorphism.
+---
 
-📌 Features
-👤 User Features
+## 📸 Overview
 
-Register a new account
+This system simulates core functionalities of an airline booking platform, allowing users to register, log in, search for flights, book tickets, generate boarding passes, and cancel reservations — all through a clean Swing-based GUI.
 
-Login with credentials
+---
 
-View available flights
+## ✨ Features
 
-Book flight tickets
+### 👤 User Management
+- Register a new customer account (`AddCustomer.java`)
+- Secure login with credential validation (`Login.java`)
+- User-friendly home dashboard after login (`Home.java`)
 
-Cancel booked tickets
+### 🛫 Flight & Booking Management
+- Browse and view available flight information (`FlightInfo.java`)
+- Book a flight with seat selection (`BookFlight.java`)
+- View detailed journey information (`JourneyDetails.java`)
+- Cancel an existing booking (`Cancel.java`)
 
-View booking details
+### 🎫 Boarding Pass
+- Generate and display a boarding pass for a confirmed booking (`BoardingPass.java`)
 
-🛫 Flight Management
+### 🗄️ Database Integration
+- Centralized MySQL database connection handler (`Conn.java`)
+- Persistent storage of customer, flight, and booking data (`db.txt` — DB schema/setup)
 
-Display available flights
+---
 
-Show flight schedules
+## 🧰 Tech Stack
 
-Manage seat availability
+| Technology        | Purpose                                      |
+|-------------------|----------------------------------------------|
+| **Java (JDK 8+)** | Core programming language                    |
+| **Java Swing**    | GUI components and windows                   |
+| **JDBC**          | Java Database Connectivity                   |
+| **MySQL**         | Relational database for persistent storage   |
+| **OOP Principles**| Encapsulation, Inheritance, Polymorphism      |
 
-Track booked flights
+---
 
-🛠 System Features
+## 📂 Project Structure
 
-Console-based user interface
+```
+AirlineReservationSystemWithJAVA/
+│
+├── AddCustomer.java      # New customer registration form
+├── BoardingPass.java     # Boarding pass generation and display
+├── BookFlight.java       # Flight booking interface
+├── Cancel.java           # Booking cancellation
+├── Conn.java             # MySQL database connection utility
+├── FlightInfo.java       # View available flights
+├── Home.java             # Main dashboard after login
+├── JourneyDetails.java   # View journey/booking details
+├── Login.java            # User login screen
+└── db.txt                # Database schema / SQL setup queries
+```
 
-Data handling using Java classes
+---
 
-Modular code structure
+## ⚙️ Prerequisites
 
-Object-Oriented design implementation
+Before running this project, make sure you have the following installed:
 
-🧰 Tech Stack
-Technology	Usage
-Java	Core programming language
-OOP Concepts	Encapsulation, Inheritance, Polymorphism
-Java Collections	Data storage and manipulation
-Console Interface	User interaction
-📂 Project Structure
+- [Java JDK 8 or above](https://www.oracle.com/java/technologies/downloads/)
+- [MySQL Server](https://dev.mysql.com/downloads/mysql/)
+- [MySQL Connector/J (JDBC Driver)](https://dev.mysql.com/downloads/connector/j/)
+- An IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Eclipse](https://www.eclipse.org/), or a terminal
 
-(Structure may vary depending on implementation)
+---
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-2️⃣ Navigate to Project Folder
-3️⃣ Compile the Program
-4️⃣ Run the Program
-💡 Example Workflow
-🎯 Learning Objectives
+## 🚀 Installation & Setup
 
-This project helps in understanding:
+### 1️⃣ Clone the Repository
 
-Object-Oriented Programming in Java
+```bash
+git clone https://github.com/dev-pritam-2005/AirlineReservationSystemWithJAVA.git
+cd AirlineReservationSystemWithJAVA
+```
 
-Class and Object design
+### 2️⃣ Set Up the Database
 
-Basic system design
+1. Open **MySQL Workbench** or your MySQL client.
+2. Open and run the SQL commands from `db.txt` to create the required database and tables.
+3. Note down your MySQL **host**, **port**, **username**, and **password**.
 
-Console application development
+### 3️⃣ Configure the Database Connection
 
-Data management using Java collections
+Open `Conn.java` and update your credentials:
 
-🚀 Future Improvements
+```java
+Connection con = DriverManager.getConnection(
+    "jdbc:mysql://localhost:3306/airlinereservation",
+    "your_username",
+    "your_password"
+);
+```
 
-Add Graphical User Interface (GUI) using Java Swing or JavaFX
+### 4️⃣ Add the JDBC Driver to Classpath
 
-Integrate Database (MySQL / MongoDB)
+Download `mysql-connector-j-x.x.x.jar` and place it in your project directory or add it to your IDE's build path.
 
-Implement online payment simulation
+### 5️⃣ Compile the Project
 
-Add admin dashboard
+```bash
+javac -cp .;mysql-connector-j-x.x.x.jar *.java
+```
 
-Build REST API version using Spring Boot
+> On Linux/macOS, replace `;` with `:` in the classpath separator.
 
-👨‍💻 Author
+### 6️⃣ Run the Application
 
-Pritam Dutta
+```bash
+java -cp .;mysql-connector-j-x.x.x.jar Login
+```
 
-GitHub:
-https://github.com/dev-pritam-2005
+---
 
-LinkedIn: 
+## 💡 Usage Workflow
 
-📜 License
+```
+Launch App (Login.java)
+    │
+    ├── New User? → AddCustomer.java → Register → Login
+    │
+    └── Existing User? → Login → Home.java (Dashboard)
+                                      │
+                        ┌─────────────┼─────────────┐─────────────┐
+                        │             │             │             │
+                  FlightInfo    BookFlight   JourneyDetails    Cancel
+                        │             │
+                        └─────────────┘
+                              │
+                        BoardingPass.java
+```
 
-This project is open-source and available under the MIT License.
+---
+
+## 🎯 Learning Objectives
+
+This project is a great hands-on exercise for learning:
+
+- **Java Swing GUI** development (frames, panels, buttons, text fields, tables)
+- **JDBC** for database connection and CRUD operations
+- **OOP Design** — class separation by responsibility
+- **Event-driven programming** using action listeners
+- **Database schema design** for a real-world application
+
+---
+
+## 🚀 Future Improvements
+
+- [ ] Add an **Admin Panel** for managing flights and users
+- [ ] Implement **password hashing** for secure login
+- [ ] Add **search/filter** functionality for flights by date, destination, or price
+- [ ] Integrate **online payment simulation**
+- [ ] Migrate to a **Spring Boot + React** web version
+- [ ] Add **email confirmation** for bookings using JavaMail API
+- [ ] Write **unit tests** using JUnit
+
+---
+
+## 👨‍💻 Author
+
+**Pritam Dutta**
+
+- GitHub: [@dev-pritam-2005](https://github.com/dev-pritam-2005)
+
+---
+
+## 📜 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+> ⭐ If you found this project helpful, consider giving it a star on GitHub!
